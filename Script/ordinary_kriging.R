@@ -50,7 +50,7 @@ tool_exec <- function(in_params, out_params)
   
   #### Write Output ####
   
-  message(".........krigging on the go....")
+  message(".........kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
   gridded(out_krig)=T
   
