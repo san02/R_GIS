@@ -53,8 +53,11 @@ tool_exec <- function(in_params, out_params)
   message(".........krigging on the go....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
   gridded(out_krig)=T
-  out_krig1 = out_krig[1]
-  out_krig2 = out_krig[2]
+  
+  #converting Sp.pixel.DF to  Sp.polygon.DF
+  out_krig_pols = as(out_krig,"SpatialPolygonsDataFrame")
+  out_krig1 = out_krig_pols[1]
+  out_krig2 = out_krig_pols[2]
   
   message("...write output...")
   arc.write(output_feature1,out_krig1)
