@@ -12,7 +12,6 @@ tool_exec <- function(in_params, out_params)
     install.packages("raster")
   
   require(sp)
-  require(gstat)
   require(spatstat)
   require(maptools)
   require(raster)
