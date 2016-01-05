@@ -16,9 +16,12 @@ tool_exec <- function(in_params, out_params)
   require(maptools)
   require(raster)
   
+  ##Declaring the inputs and Output
   input_feature = in_params[[1]]
   dep_variable = in_params[[2]]
   output_feature = out_params[[1]]
+  
+  ## Reading the input in Arcgis
   d = arc.open(input_feature)
   dat = arc.select(d, dep_variable)
   dat.xy = data.frame(x=arc.shape(dat)$x,y=arc.shape(dat)$y,input_feature)
