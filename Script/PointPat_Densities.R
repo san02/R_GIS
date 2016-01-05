@@ -28,8 +28,8 @@ tool_exec <- function(in_params, out_params)
   
   message("loading...",class(dat.xy))
   
-   try1 = as.ppp(dat.2)
-  d= density.ppp(try1, sigma = 70)
+  dat.ppp = as.ppp(dat.2)
+  d= density.ppp(dat.ppp, sigma = 70)
   r = raster(d)
   patternDensity = as(r, "SpatialPolygonsDataFrame")
   
