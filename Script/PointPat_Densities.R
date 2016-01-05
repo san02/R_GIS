@@ -27,10 +27,12 @@ tool_exec <- function(in_params, out_params)
   coordinates(dat.2)=~x+y
   
   message("loading...",class(dat.xy))
-  
+  ### Converting the class   
   dat.ppp = as.ppp(dat.2)
   d= density.ppp(dat.ppp, sigma = 70)
   r = raster(d)
+  
+  ## Converting to SP class
   patternDensity = as(r, "SpatialPolygonsDataFrame")
   
   #### Write Output ####
