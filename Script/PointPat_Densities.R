@@ -32,7 +32,7 @@ tool_exec <- function(in_params, out_params)
   message("loading...",class(dat.xy))
   ### Converting the class   
   dat.ppp = as.ppp(dat.2)
-  d= density.ppp(dat.ppp, sigma = 70)
+  d= density.ppp(dat.ppp, sigma = 100)
   r = raster(d)
   
   ## Converting to SP class
