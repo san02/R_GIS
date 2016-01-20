@@ -17,6 +17,7 @@ tool_exec <- function(in_params, out_params)
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
   
+  #print(class(input_feature))
   d = arc.open(input_feature)
   dat = arc.select(d,c(dep_variable,covariate))
   dat.xy = data.frame(x=arc.shape(dat)$x,y=arc.shape(dat)$y,input_feature)
@@ -24,11 +25,11 @@ tool_exec <- function(in_params, out_params)
   dat.2 = cbind(dat.1,dat.xy,dat)
   coordinates(dat.2)=~x+y
   
-  
+  print(names(dat.2))
   message("Creating model formula")
    
-  model_kr = paste(dep_variable,"~sqrt(dist)")
-  m=as.formula(paste(dep_variable,"~x+y"))
+  model_kr = paste(dep_variable, covariate, sep = "~")
+  #m=as.formula(paste(dep_variable,"~x+y"))
   model_kr.f = as.formula(model_kr)
   
   message(paste0("formula = ", model_kr))
@@ -42,6 +43,7 @@ tool_exec <- function(in_params, out_params)
   oid_field_0 = d.loc@fields
   oid_field = names(oid_field_0[oid_field_0 == 'OID'])[[1]]
   data.loc = arc.select(d.loc,oid_field)
+  print(class(data.loc))
   data_shp = arc.shape(data.loc)
   
   data.loc_xy <- data.frame(
@@ -51,11 +53,12 @@ tool_exec <- function(in_params, out_params)
   data.loc.1  = cbind(data.loc_xy,oid_field_0)
   coordinates(data.loc.1)=~x+y
   gridded(data.loc.1)=T
+  print(names(data.loc.1))
   
   #### Write Output ####
   
   message("....krigging with covariate dist....")
-  out_krig = krige(m,dat.2, data.loc.1, vario.fit,nmax =30)
+  out_krig = krige(model_kr.f, dat.2, data.loc.1, vario.fit,nmax =30)
   gridded(out_krig)=T
   
   #converting Sp.pixel.DF to  Sp.polygon.DF

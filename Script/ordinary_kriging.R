@@ -1,6 +1,8 @@
-
+# Ordinary kriging
+# Initializing binding tool
 tool_exec <- function(in_params, out_params)
   {
+# loading packages  
    if (!requireNamespace("sp", quietly = T))
     install.packages("sp")
   if (!requireNamespace("gstat",quietly = T))
@@ -9,11 +11,18 @@ tool_exec <- function(in_params, out_params)
   require(sp)
   require(gstat)
  
+  # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
+  partial_sill = in_params[[4]]
+  modl = in_params[[5]]
+  rang = in_params[[6]]
+  nugt = in_params[[7]]
   dep_variable = in_params[[3]]
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
+  
+  #exporting datasets
   d = arc.open(input_feature)
   dat = arc.select(d, dep_variable)
   dat.xy = data.frame(x=arc.shape(dat)$x,y=arc.shape(dat)$y,input_feature)
@@ -21,17 +30,22 @@ tool_exec <- function(in_params, out_params)
   dat.2 = cbind(dat.1,dat.xy,dat)
   coordinates(dat.2)=~x+y
   
+  message(partial_sill, modl, rang, nugt)
   message("loading...",class(dat.xy))
   
+  #creating model formula
   message("Creating model formula")
   model_kr = paste(dep_variable,"~1")
   model_kr.f = as.formula(model_kr)
   
   message(paste0("formula = ", model_kr))
   
+  #creating variogram
   message("creating variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
-  vario.fit = fit.variogram(out_varianc, vgm(1, "Sph", 900, 1))
+
+  #fitting the model
+  vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
   
   message("Predicting...")
   d.loc = arc.open(predict_location)
@@ -50,18 +64,23 @@ tool_exec <- function(in_params, out_params)
   
   #### Write Output ####
   
-  message(".........kriging now....")
+  message("....kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
   gridded(out_krig)=T
-  
-  #converting Sp.pixel.DF to  Sp.polygon.DF
-  out_krig_pols = as(out_krig,"SpatialPolygonsDataFrame")
-  out_krig1 = out_krig_pols[1]
-  out_krig2 = out_krig_pols[2]
+  out_krig1 = out_krig[1]
+  out_krig2 = out_krig[2]
   
   message("...write output...")
   arc.write(output_feature1,out_krig1)
-  arc.write(output_feature2,out_krig2)
-  message("...done...almost...")
+  
+  if (!is.null(output_feature2))
+  {
+    tryCatch(
+      {
+        pdf(output_feature2)
+        plot(out_krig2)
+      }, finally = { dev.off() })
+  }
+ message("...done...almost...")
   return(out_params)
 }
