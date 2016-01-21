@@ -7,10 +7,10 @@ tool_exec <- function(in_params, out_params)
     install.packages("sp")
   if (!requireNamespace("gstat",quietly = T))
     install.packages("gstat")
-  
+ 
   require(sp)
   require(gstat)
- 
+  
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
@@ -43,6 +43,7 @@ tool_exec <- function(in_params, out_params)
   #creating variogram
   message("creating variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
+  message(class(out_varianc))
 
   #fitting the model
   vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
@@ -66,21 +67,29 @@ tool_exec <- function(in_params, out_params)
   
   message("....kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
-  gridded(out_krig)=T
+  gridded(out_krig)=F
   out_krig1 = out_krig[1]
   out_krig2 = out_krig[2]
+  varDF = as.data.frame(as.list(out_varianc))
+  attach(varDF)
   
   message("...write output...")
   arc.write(output_feature1,out_krig1)
   
   if (!is.null(output_feature2))
   {
-    tryCatch(
-      {
         pdf(output_feature2)
-        plot(out_krig2)
-      }, finally = { dev.off() })
+        color <- out_krig2@data$var1.var
+        q = quantile(range(out_krig2$var1.var))
+        color <- ifelse(color > q[1] & color <= q[2], "green",
+                        ifelse(color > q[2] & color <= q[3], "yellow",
+                          ifelse(color > q[3] & color <= q[4], "orange",
+                                ifelse(color > q[4], "red", NA))))  
+        plot(out_krig2, col=color, pch=15, main = "*** Variance ***", cex.main = 2)
+        plot(dist,gamma,xlab = "distance",ylab = "semivariance", main = "Variogram",cex.main = 1.25 , col = "blue" )
+        lines(dist,gamma,col=8)
+        dev.off()
   }
- message("...done...almost...")
+  message("...done...almost...")
   return(out_params)
 }
