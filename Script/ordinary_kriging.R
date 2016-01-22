@@ -7,9 +7,12 @@ tool_exec <- function(in_params, out_params)
     install.packages("sp")
   if (!requireNamespace("gstat",quietly = T))
     install.packages("gstat")
- 
+  if (!requireNamespace("raster",quietly = T))
+    install.packages("raster")
+  
   require(sp)
   require(gstat)
+  require(raster)
   
   # defining variables
   input_feature = in_params[[1]]
@@ -35,16 +38,16 @@ tool_exec <- function(in_params, out_params)
   
   #creating model formula
   message("Creating model formula")
-  model_kr = paste(dep_variable,"~1")
+  model_kr = paste(log(dat),"~1")
   model_kr.f = as.formula(model_kr)
   
-  message(paste0("formula = ", model_kr))
+  message(paste0("formula = ", model_kr.f))
   
   #creating variogram
   message("creating variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
   message(class(out_varianc))
-
+  
   #fitting the model
   vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
   
@@ -67,8 +70,11 @@ tool_exec <- function(in_params, out_params)
   
   message("....kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
-  gridded(out_krig)=F
+  
+  gridded(out_krig)=T
   out_krig1 = out_krig[1]
+  
+  gridded(out_krig)=F
   out_krig2 = out_krig[2]
   varDF = as.data.frame(as.list(out_varianc))
   attach(varDF)
@@ -79,17 +85,20 @@ tool_exec <- function(in_params, out_params)
   if (!is.null(output_feature2))
   {
         pdf(output_feature2)
-        color <- out_krig2@data$var1.var
-        q = quantile(range(out_krig2$var1.var))
-        color <- ifelse(color > q[1] & color <= q[2], "green",
-                        ifelse(color > q[2] & color <= q[3], "yellow",
-                          ifelse(color > q[3] & color <= q[4], "orange",
-                                ifelse(color > q[4], "red", NA))))  
-        plot(out_krig2, col=color, pch=15, main = "*** Variance ***", cex.main = 2)
         plot(dist,gamma,xlab = "distance",ylab = "semivariance", main = "Variogram",cex.main = 1.25 , col = "blue" )
-        lines(dist,gamma,col=8)
+        print(plot(out_varianc,vario.fit,main = "Variogram with fitted Model",cex.main = 1.25))
+        gridded(out_krig)=F
+        print(spplot(out_krig))
+        gridded(out_krig1)=T
+        gridded(out_krig2)=T
+        KrigRaster = raster(out_krig1)
+        VarRaster = raster(out_krig2)
+        plot(KrigRaster,main = "Interpolation Raster Plot",cex.main = 1.5)
+        plot(VarRaster,main = "Variance Raster Plot", cex.main =  1.5)
+        
         dev.off()
   }
+  
   message("...done...almost...")
   return(out_params)
 }
