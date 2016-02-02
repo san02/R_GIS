@@ -22,8 +22,9 @@ Package ‘gstat’ is used here in conjunction with the package ‘sp’. 'gsta
 In order to use this tool, select the Ordkrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
 
 The description of each of the parameters found in this pop-up tool is as follow.
-1. Input_feature  :  Input point feature containing fields of the dependent variable and all explanatory variables.
-2. Prediction_location  :  Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
+
+1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
+2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
 3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
 4. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
 5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
@@ -35,12 +36,15 @@ Once the inputs are given, the tool runs as shown below in Figure .b and produce
 In order to use this tool, select the UnivKrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .e.
 
 The description of each of the parameters found in this pop-up tool is as follow.
-1. **Input_feature** : Input point feature containing fields of the dependent variable and all explanatory variables.
-2. **Prediction_location** : Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
-3. **Dep_variable** : Field from the input feature containing the attributes of sampled points. A particular value gives the strength of the field element at that point.
+
+1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
+2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
+3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
 4. **Covariate** : Field from the input feature containing independent or explanatory variables.
-5. **Output_krige** : Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-6. **Output_var** : Output variance provides how far the values are deviated from the other and the mean.
+5. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
+5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
+
+
 
 This works in the same way as the ordinary krige tool with the same datasets provided in this repository. Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. Click the Prediction_location file icon and browse for meuse_grid from the same meuse.gdb. Click the drop down icon of dep_variable parameter and select any heavy metal variable to process prediction. Then, Click the drop down icon of covariate parameter and select for the ‘dist’ variable to process prediction. Give the output file for Output_krige if you want to change the default file selects. Give the output file for Output_var if needed since it is optional. Finally click OK.
 Once the inputs are given, the tool runs as shown below Figure .f and produces the output krige and variance shape files (Figure .g).
