@@ -1,5 +1,5 @@
 # Ordinary kriging
-# Initializing binding tool
+# Initializing binding tool function
 tool_exec <- function(in_params, out_params)
   {
 # loading packages  
@@ -17,39 +17,50 @@ tool_exec <- function(in_params, out_params)
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
-  partial_sill = in_params[[4]]
-  modl = in_params[[5]]
-  rang = in_params[[6]]
-  nugt = in_params[[7]]
+  partial_sill = in_params[[5]]
+  modl = in_params[[6]]
+  rang = in_params[[7]]
+  nugt = in_params[[8]]
   dep_variable = in_params[[3]]
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
+  log_covar = in_params[[4]]
   
   #exporting datasets
   d = arc.open(input_feature)
   dat = arc.select(d, dep_variable)
-  dat.xy = data.frame(x=arc.shape(dat)$x,y=arc.shape(dat)$y,input_feature)
+  dat['x'] = arc.shape(dat)$x
+  dat['y'] = arc.shape(dat)$y
   dat.1 = arc.select(d,names(d@fields[d@fields == "OID"]))
-  dat.2 = cbind(dat.1,dat.xy,dat)
+  dat.2 = cbind(dat.1,dat)
   coordinates(dat.2)=~x+y
-  
-  message(partial_sill, modl, rang, nugt)
-  message("loading...",class(dat.xy))
   
   #creating model formula
   message("Creating model formula")
+  
+  if (log_covar == FALSE)
+  {
+  model_kr = paste(dep_variable, "~1")
+  message("formula =",model_kr)
+  }
+  else
+  {
   model_kr = paste(log(dat),"~1")
+  message("formula = log(",dep_variable,")~1")
+  }
   model_kr.f = as.formula(model_kr)
   
-  message(paste0("formula = ", model_kr.f))
-  
-  #creating variogram
-  message("creating variogram...")
+   #creating variogram
+  message("computing sample variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
   message(class(out_varianc))
   
+  message("fitting variogram model...")
+  
   #fitting the model
   vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
+  print(vario.fit)
+  
   
   message("Predicting...")
   d.loc = arc.open(predict_location)
@@ -76,18 +87,15 @@ tool_exec <- function(in_params, out_params)
   
   gridded(out_krig)=F
   out_krig2 = out_krig[2]
-  varDF = as.data.frame(as.list(out_varianc))
-  attach(varDF)
   
-  message("...write output...")
+  message("...writing output...")
   arc.write(output_feature1,out_krig1)
   
   if (!is.null(output_feature2))
   {
         pdf(output_feature2)
-        plot(dist,gamma,xlab = "distance",ylab = "semivariance", main = "Variogram",cex.main = 1.25 , col = "blue" )
         print(plot(out_varianc,vario.fit,main = "Variogram with fitted Model",cex.main = 1.25))
-        gridded(out_krig)=F
+        gridded(out_krig)=TRUE
         print(spplot(out_krig))
         gridded(out_krig1)=T
         gridded(out_krig2)=T
