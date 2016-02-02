@@ -3,6 +3,11 @@
 
 ##Term descriptions
 
+1. shankar
+2. lingam
+3. shan
+4. san
+
 ###Methods
 Kriging, also referred to as Gaussian process regression is an effective geostatistical method for interpolating the values that are modeled by a Gaussian process governed by prior covariance, as opposed to a piecewise–polynomial spline chosen to optimize smoothness of the fitted values.
 
