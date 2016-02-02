@@ -15,11 +15,14 @@ The data used here in this example case is Meuse river data.
 Meuse dataset comprises the measures of four major heavy metals found in the top soil in a flood plain along the river Meuse, Belgium. This is crucial that the contamination happens just because of the river flow that moves the polluted sediments and deposits close to the river bank. This case makes it explicit for geostatistical analysis of the dataset.
 
 ###R-Package
-Package ‘gstat’ is used here in conjunction with the package ‘sp’. 'gstat’ promotes a range of univariate and multivariate geostatistical modelling, prediction and simulation functions while ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
+[Package ‘gstat’](https://cran.r-project.org/web/packages/gstat/gstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'gstat’ promotes a range of univariate and multivariate geostatistical modelling, prediction and simulation functions while ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
 
 ###How to use
 ####Ordinary kriging
 In order to use this tool, select the Ordkrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
+
+![Ordinary kriging tool](C:\Users\Shankar\Desktop\SEM-2\R with ArcGIS)
+Format: ![Alt Text](url)
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
