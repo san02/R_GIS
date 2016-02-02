@@ -1,5 +1,5 @@
 # R_GIS
-> ## Bridging R with ArcGIS
+> ## Bridging R with ArcGIS - _Examples_
 
 ### Using R as a scripting tool to generate geostatistical tools for ArcGIS to work with.
 
