@@ -1,5 +1,5 @@
 
-# **Predicting the attributes of the unsampled locations using kriging with the ‘gstat’ package**
+## **Predicting the attributes of the unsampled locations using kriging with the ‘gstat’ package**
 
 ##Term descriptions
 
@@ -22,11 +22,11 @@ Package ‘gstat’ is used here in conjunction with the package ‘sp’. 'gsta
 In order to use this tool, select the Ordkrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
 
 The description of each of the parameters found in this pop-up tool is as follow.
-1. **Input_feature** : Input point feature containing fields of the dependent variable and all explanatory variables.
-2. **Prediction_location** : Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
-3. **Dep_variable** : Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
-4. **Output_krige** : Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-5. **Output_var** : Output variance provides how far the values are deviated from the other and the mean.
+1. **Input_feature  :**  Input point feature containing fields of the dependent variable and all explanatory variables.
+2. **Prediction_location  :**  Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
+3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
+4. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
+5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
 
 The feature layers of meuse dataset is provided in this same repository within the data folder. Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. Click the Prediction_location file icon and browse for meuse_grid from the same meuse.gdb. Click the drop down icon of dep_variable parameter and select for a variable to process prediction. Give output files for Output_krige and Output_var if you want to change the default file selects. Finally click OK.
 Once the inputs are given, the tool runs as shown below in Figure .b and produces the output krige and variance shape files as shown in Figure .c and .d.
