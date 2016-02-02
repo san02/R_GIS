@@ -9,5 +9,5 @@
 -The Universal kriging tool uses a covariate [sqrt(dist)] to interpolate the values.
 
 
-## **Using R with ArcGIS to predicted the attributes of the unsampled locations using kriging with the ‘gstat’ package**
+## **Predicting the attributes of the unsampled locations using kriging with the ‘gstat’ package**
 
