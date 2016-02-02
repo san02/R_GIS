@@ -50,6 +50,6 @@ This works in the same way as the ordinary krige tool with the same datasets pro
 Once the inputs are given, the tool runs as shown below Figure .f and produces the output krige and variance shape files (Figure .g).
 
 ###References 
-- [1] Pebesma, Edzer J. "Multivariable geostatistics in S: the gstat package."Computers & Geosciences 30.7 (2004): 683-691. 
-- [2] Pebesma, Edzer, and Benedikt Gräler. "Spatio-temporal geostatistics using gstat." (2015).
+  [1] Pebesma, Edzer J. "Multivariable geostatistics in S: the gstat package."Computers & Geosciences 30.7 (2004): 683-691. 
+  [2] Pebesma, Edzer, and Benedikt Gräler. "Spatio-temporal geostatistics using gstat." (2015).
  
