@@ -3,11 +3,6 @@
 
 ##Term descriptions
 
-1. shankar
-2. lingam
-3. shan
-4. san
-
 ###Methods
 Kriging, also referred to as Gaussian process regression is an effective geostatistical method for interpolating the values that are modeled by a Gaussian process governed by prior covariance, as opposed to a piecewise–polynomial spline chosen to optimize smoothness of the fitted values.
 
@@ -27,8 +22,8 @@ Package ‘gstat’ is used here in conjunction with the package ‘sp’. 'gsta
 In order to use this tool, select the Ordkrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
 
 The description of each of the parameters found in this pop-up tool is as follow.
-1. **Input_feature  :**  Input point feature containing fields of the dependent variable and all explanatory variables.
-2. **Prediction_location  :**  Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
+1. Input_feature  :  Input point feature containing fields of the dependent variable and all explanatory variables.
+2. Prediction_location  :  Input point feature representing locations where you would like to predict the probable values for the presence of dependent variable. These point feature must have certain explanatory variables stored as fields.
 3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
 4. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
 5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
