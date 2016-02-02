@@ -18,7 +18,7 @@ Requirements
 
 ## Credits
 
-Model Based Clustering uses the [gstat package](http://www.gstat.org/gstat.pdf) for R:
+Ordinary and Universal kriging use the [gstat package](http://www.gstat.org/gstat.pdf) for R:
 
 > `gstat`: Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation
 > By Edzer Pebesma [aut, cre], Benedikt Graeler [aut]
