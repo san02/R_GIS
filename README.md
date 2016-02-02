@@ -3,7 +3,6 @@
 
 Requirements
 ------------
-
  - [ArcGIS R bridge](https://github.com/R-ArcGIS/r-bridge-install)
  - [R Statistical Computing Software](http://www.r-project.org)
 
@@ -13,9 +12,6 @@ Requirements
      * One is for Ordinary kriging while the other is Universal kriging tool.
 - The Ordinary kriging tool simply interpolates the values.
 - The Universal kriging tool uses a covariate [sqrt(dist)] to interpolate the values.
-
-
-## **Predicting the attributes of the unsampled locations using kriging with the ‘gstat’ package**
 
 ## Credits
 
