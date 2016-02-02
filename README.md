@@ -1,6 +1,11 @@
 # R_GIS
 > ## Bridging R with ArcGIS - _Examples_
 
+###Requirements
+
+- ArcGIS R bridge
+- R Statistical Computing Software
+
 ### Using R as a scripting tool to generate geostatistical tools for ArcGIS to work with.
 
 - This Repository has two tools as of now meant for kriging - One is for Ordinary kriging while the other is Universal kriging tool.
