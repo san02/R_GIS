@@ -1,10 +1,11 @@
 # R_GIS
-> ## Bridging R with ArcGIS - _Examples_
+> ## [Bridging R with ArcGIS](https://r-arcgis.github.io/) - _Examples_
 
-###Requirements
+Requirements
+------------
 
-- ArcGIS R bridge
-- R Statistical Computing Software
+ - [ArcGIS R bridge](https://github.com/R-ArcGIS/r-bridge-install)
+ - [R Statistical Computing Software](http://www.r-project.org)
 
 ### Using R as a scripting tool to generate geostatistical tools for ArcGIS to work with.
 
@@ -14,4 +15,17 @@
 
 
 ## **Predicting the attributes of the unsampled locations using kriging with the ‘gstat’ package**
+
+## Credits
+
+Model Based Clustering uses the [gstat package](http://www.gstat.org/gstat.pdf) for R:
+
+> `gstat`: Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation
+> By Edzer Pebesma [aut, cre], Benedikt Graeler [aut]
+> Licensed under the 	GPL-2 | GPL-3 [expanded from: GPL (≥ 2.0)]
+
+All tools depend on the R Statistical Computing Software:
+
+> Copyright (C) 2015 The R Foundation for Statistical Computing
+> R is free software and comes with ABSOLUTELY NO WARRANTY.
 
