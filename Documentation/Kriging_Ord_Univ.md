@@ -21,9 +21,6 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 ####Ordinary kriging
 In order to use this tool, select the Ordkrig scriot tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
 
-![Ordinary kriging tool](C:\Users\Shankar\Desktop\SEM-2\R with ArcGIS)
-Format: ![Alt Text](url)
-
 The description of each of the parameters found in this pop-up tool is as follow.
 
 1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
@@ -49,8 +46,13 @@ The description of each of the parameters found in this pop-up tool is as follow
 2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
 3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
 4. **Covariate** : Field from the input feature containing independent or explanatory variables.
-5. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
+5. **Using_log  :** Taking logarithmic values for the dependent variable.
+6. **Partial_sill  :** (Partial) Sill of the variogram model component.
+7. **Model  :** Model type, e.g. "Exp", "Sph", "Gau", "Mat".
+8. **Range  :** Range of the variogram model component.
+9. **Nugget  :** Nugget component of the variogram. (this basically adds a nugget compontent to the model)
+10. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
+11. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
 
 
 
