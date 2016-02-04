@@ -29,8 +29,13 @@ The description of each of the parameters found in this pop-up tool is as follow
 1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
 2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
 3. **Dep_variable  :**  Field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
-4. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-5. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
+4. **Using_log  :** Taking logarithmic values for the dependent variable.
+5. **Partial_sill  :** (Partial) Sill of the variogram model component.
+6. **Model  :** Model type, e.g. "Exp", "Sph", "Gau", "Mat".
+7. **Range  :** Range of the variogram model component.
+8. **Nugget  :** Nugget component of the variogram. (this basically adds a nugget compontent to the model)
+9. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
+10. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean.
 
 The feature layers of meuse dataset is provided in this same repository within the data folder. Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. Click the Prediction_location file icon and browse for meuse_grid from the same meuse.gdb. Click the drop down icon of dep_variable parameter and select for a variable to process prediction. Give output files for Output_krige and Output_var if you want to change the default file selects. Finally click OK.
 Once the inputs are given, the tool runs as shown below in Figure .b and produces the output krige and variance shape files as shown in Figure .c and .d.
