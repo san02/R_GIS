@@ -76,9 +76,6 @@ tool_exec <- function(in_params, out_params)
   coordinates(data.loc.1)=~x+y
   gridded(data.loc.1)=T
   
-  message(nrow(dat.2))
-  message(nrow(data.loc.1))
-  
   #### Write Output ####
   
   message("....kriging now....")
@@ -105,10 +102,8 @@ tool_exec <- function(in_params, out_params)
         VarRaster = raster(out_krig2)
         plot(KrigRaster,main = "Interpolation Raster Plot",cex.main = 1.5)
         plot(VarRaster,main = "Variance Raster Plot", cex.main =  1.5)
-        
         dev.off()
   }
-  
   message("...done...almost...")
   return(out_params)
 }
