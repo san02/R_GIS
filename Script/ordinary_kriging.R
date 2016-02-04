@@ -53,7 +53,6 @@ tool_exec <- function(in_params, out_params)
    #creating variogram
   message("computing sample variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
-  message(class(out_varianc))
   
   message("fitting variogram model...")
   
@@ -76,6 +75,9 @@ tool_exec <- function(in_params, out_params)
   data.loc.1  = cbind(data.loc_xy,oid_field_0)
   coordinates(data.loc.1)=~x+y
   gridded(data.loc.1)=T
+  
+  message(nrow(dat.2))
+  message(nrow(data.loc.1))
   
   #### Write Output ####
   
