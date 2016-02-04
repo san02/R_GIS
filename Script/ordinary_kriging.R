@@ -24,7 +24,7 @@ tool_exec <- function(in_params, out_params)
   dep_variable = in_params[[3]]
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
-  log_covar = in_params[[4]]
+  log_var = in_params[[4]]
   
   #exporting datasets
   d = arc.open(input_feature)
@@ -38,7 +38,7 @@ tool_exec <- function(in_params, out_params)
   #creating model formula
   message("Creating model formula")
   
-  if (log_covar == FALSE)
+  if (log_var == FALSE)
   {
   model_kr = paste(dep_variable, "~1")
   message("formula =",model_kr)
