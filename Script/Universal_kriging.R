@@ -14,7 +14,7 @@ tool_exec <- function(in_params, out_params)
   require(gstat)
   require(raster)
   
-  message("initialinzing")
+  message("initializing")
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
@@ -29,7 +29,6 @@ tool_exec <- function(in_params, out_params)
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
   
-  message("dataset creatun")
   #exporting datasets
   d = arc.open(input_feature)
   dat = arc.select(d,c(dep_variable,covariate))
