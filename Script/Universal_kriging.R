@@ -20,7 +20,7 @@ tool_exec <- function(in_params, out_params)
   predict_location = in_params[[2]]
   dep_variable = in_params[[3]]
   covariate = in_params[[4]]
-  log_covar = in_params[[5]]
+  log_var = in_params[[5]]
   partial_sill = in_params[[6]]
   modl = in_params[[7]]
   rang = in_params[[8]]
@@ -39,7 +39,7 @@ tool_exec <- function(in_params, out_params)
   coordinates(dat.2)=~x+y
   
   message("Creating model formula")
-  if (log_covar == FALSE)
+  if (log_var == FALSE)
   {
     model_kr = paste(dep_variable, "~sqrt(",covariate,")")
     message("formula =",model_kr)
@@ -101,7 +101,6 @@ tool_exec <- function(in_params, out_params)
     plot(VarRaster,main = "Variance Raster Plot", cex.main =  1.5)
     dev.off()
   }
-  
   message("...done...almost...")
   return(out_params)
 }
