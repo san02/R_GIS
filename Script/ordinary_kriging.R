@@ -24,7 +24,7 @@ tool_exec <- function(in_params, out_params)
   dep_variable = in_params[[3]]
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
-  log_covar = in_params[[4]]
+  log_var = in_params[[4]]
   
   #exporting datasets
   d = arc.open(input_feature)
@@ -38,7 +38,7 @@ tool_exec <- function(in_params, out_params)
   #creating model formula
   message("Creating model formula")
   
-  if (log_covar == FALSE)
+  if (log_var == FALSE)
   {
   model_kr = paste(dep_variable, "~1")
   message("formula =",model_kr)
@@ -76,9 +76,6 @@ tool_exec <- function(in_params, out_params)
   coordinates(data.loc.1)=~x+y
   gridded(data.loc.1)=T
   
-  message(nrow(dat.2))
-  message(nrow(data.loc.1))
-  
   #### Write Output ####
   
   message("....kriging now....")
@@ -105,10 +102,8 @@ tool_exec <- function(in_params, out_params)
         VarRaster = raster(out_krig2)
         plot(KrigRaster,main = "Interpolation Raster Plot",cex.main = 1.5)
         plot(VarRaster,main = "Variance Raster Plot", cex.main =  1.5)
-        
         dev.off()
   }
-  
   message("...done...almost...")
   return(out_params)
 }

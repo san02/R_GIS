@@ -14,13 +14,13 @@ tool_exec <- function(in_params, out_params)
   require(gstat)
   require(raster)
   
-  message("initialinzing")
+  message("initializing")
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
   dep_variable = in_params[[3]]
   covariate = in_params[[4]]
-  log_covar = in_params[[5]]
+  log_var = in_params[[5]]
   partial_sill = in_params[[6]]
   modl = in_params[[7]]
   rang = in_params[[8]]
@@ -29,7 +29,6 @@ tool_exec <- function(in_params, out_params)
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
   
-  message("dataset creatun")
   #exporting datasets
   d = arc.open(input_feature)
   dat = arc.select(d,c(dep_variable,covariate))
@@ -40,7 +39,7 @@ tool_exec <- function(in_params, out_params)
   coordinates(dat.2)=~x+y
   
   message("Creating model formula")
-  if (log_covar == FALSE)
+  if (log_var == FALSE)
   {
     model_kr = paste(dep_variable, "~",covariate)
     message("formula =",model_kr)
@@ -102,7 +101,6 @@ tool_exec <- function(in_params, out_params)
     plot(VarRaster,main = "Variance Raster Plot", cex.main =  1.5)
     dev.off()
   }
-  
   message("...done...almost...")
   return(out_params)
 }
