@@ -42,12 +42,12 @@ tool_exec <- function(in_params, out_params)
   message("Creating model formula")
   if (log_covar == FALSE)
   {
-    model_kr = paste(dep_variable, "~sqrt(",covariate,")")
+    model_kr = paste(dep_variable, "~",covariate)
     message("formula =",model_kr)
   }
   else
   {
-    model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate,")"))
+    model_kr = paste(paste ("log(",dep_variable,")"),paste("~",covariate))
   }
   
   model_kr.f = as.formula(model_kr)
