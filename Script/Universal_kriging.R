@@ -19,19 +19,16 @@ tool_exec <- function(in_params, out_params)
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
   dep_variable = in_params[[3]]
-  covariate = in_params[[4]]
-  log_var = in_params[[5]]
-  partial_sill = in_params[[6]]
-  modl = in_params[[7]]
-  rang = in_params[[8]]
-  nugt = in_params[[9]]
+  covariate_var = in_params[[5]]
+  log_var = in_params[[4]]
+  vgm_mod = in_params[[6]]
   
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
   
   #exporting datasets
   d = arc.open(input_feature)
-  dat = arc.select(d,c(dep_variable,covariate))
+  dat = arc.select(d,c(dep_variable,covariate_var))
   dat['x'] = arc.shape(dat)$x
   dat['y'] = arc.shape(dat)$y
   dat.1 = arc.select(d,names(d@fields[d@fields == "OID"]))
@@ -41,21 +38,22 @@ tool_exec <- function(in_params, out_params)
   message("Creating model formula")
   if (log_var == FALSE)
   {
-    model_kr = paste(dep_variable, "~sqrt(",covariate,")")
+    model_kr = paste(dep_variable, "~sqrt(",covariate_var,")")
     
   }
   else
   {
-    model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate,")"))
+    model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate_var,")"))
   }
   
   model_kr.f = as.formula(model_kr)
   
   message(paste0("formula =",model_kr ))
+  message("Input vgm_model = ",vgm_mod)
   
   message("creating variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
-  vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
+  vario.fit = fit.variogram(out_varianc,eval(parse(text= vgm_mod)))
   
   print(vario.fit)
   
@@ -64,7 +62,7 @@ tool_exec <- function(in_params, out_params)
   d.loc <- arc.open(predict_location)
   oid_field0 <- d.loc@fields
   oid_field <- names(oid_field0[oid_field0 == 'OID'])[[1]]
-  data.loc = arc.select(d.loc, c(oid_field, covariate))
+  data.loc = arc.select(d.loc, c(oid_field, covariate_var))
   data.loc.1 <- data.frame(
     x = arc.shape(data.loc)$x,
     y = arc.shape(data.loc)$y,
