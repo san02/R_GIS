@@ -48,17 +48,17 @@ The description of each of the parameters found in this pop-up tool is as follow
 Once the inputs are given, the tool runs as shown below in Figure:2 and produces the output krige as a shapefile and variance-variogram plotted and exported as a pdf file as shown in Figure:3.
 
 ![Figure:2](https://github.com/san02/Images_GIS/blob/master/ordkrigtoolrun.png)
-<p align="center">##### Figure:2.</p>
+#####<p align="center">Figure:2.</p>
 
 ![figure:3](https://github.com/san02/Images_GIS/blob/master/ordkrigoutput.png)
-<p align="center">##### Figure:3.</p>
+#####<p align="center">Figure:3.</p>
 
 
 ####Universal kriging
 In order to use this tool, select the UnivKrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:4.
 
 ![Figure:4.](https://github.com/san02/Images_GIS/blob/master/univkrigtool.png)
-<p align="center">##### Figure:4.</p>
+#####<p align="center">Figure:4.</p>
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
@@ -85,10 +85,10 @@ The description of each of the parameters found in this pop-up tool is as follow
 Once the inputs are given, the tool runs as shown below in Figure:5. and produces the output krige as a shapefile as shown in Figure:6. and variance-variogram plotted and exported as a pdf file.
 
 ![Figure:5.](https://github.com/san02/Images_GIS/blob/master/univkrigtoolrun.png)
-##### Figure:5.
+#####<p align="center"> Figure:5.</p>
 
 ![Figure:6.](https://github.com/san02/Images_GIS/blob/master/univkrigoutput.png)
-##### Figure:6.
+#####<p align="center">Figure:6.</p>
 
 
 ###References 
