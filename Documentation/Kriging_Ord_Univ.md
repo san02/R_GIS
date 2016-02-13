@@ -17,12 +17,13 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 ###R-Package
 [Package ‘gstat’](https://cran.r-project.org/web/packages/gstat/gstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'gstat’ promotes a range of univariate and multivariate geostatistical modelling, prediction and simulation functions while ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
 
-![figure:1](https://github.com/san02/R_GIS/blob/master/Documentation/image1.png)
-
+![figure:1](https://github.com/san02/Images_GIS/blob/master/ordkrigoutput.png)
 
 ###How to use
 ####Ordinary kriging
-In order to use this tool, select the Ordkrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .a.
+In order to use this tool, select the Ordkrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
+
+![Figure:1.](https://github.com/san02/Images_GIS/blob/master/ordkrigtool.png)
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
@@ -45,10 +46,16 @@ The description of each of the parameters found in this pop-up tool is as follow
 * Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) of the Variogram model.
 * Give output files for Output_krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
 
-Once the inputs are given, the tool runs as shown below in Figure .b and produces the output krige as a shapefile and variance-variogram plotted and exported as a pdf file as shown in Figure .c and .d.
+Once the inputs are given, the tool runs as shown below in Figure:2 and produces the output krige as a shapefile and variance-variogram plotted and exported as a pdf file as shown in Figure:3.
+
+![Figure:2](https://github.com/san02/Images_GIS/blob/master/ordkrigtoolrun.png)
+
+![figure:3](https://github.com/san02/Images_GIS/blob/master/ordkrigoutput.png)
 
 ####Universal kriging
-In order to use this tool, select the UnivKrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure .e.
+In order to use this tool, select the UnivKrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:4.
+
+![Figure:4.](https://github.com/san02/Images_GIS/blob/master/univkrigtool.png)
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
@@ -72,7 +79,11 @@ The description of each of the parameters found in this pop-up tool is as follow
 * Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model.
 * Give output files for Output_krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
 
-Once the inputs are given, the tool runs as shown below in Figure .f and produces the output krige as a shapefile and variance-variogram plotted and exported as a pdf file as shown in Figure .g
+Once the inputs are given, the tool runs as shown below in Figure:5. and produces the output krige as a shapefile as shown in Figure:6. and variance-variogram plotted and exported as a pdf file.
+
+![Figure:5.](https://github.com/san02/Images_GIS/blob/master/univkrigtoolrun.png)
+
+![Figure:6.](https://github.com/san02/Images_GIS/blob/master/univkrigoutput.png)
 
 
 ###References 
