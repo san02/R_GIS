@@ -17,8 +17,6 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 ###R-Package
 [Package ‘gstat’](https://cran.r-project.org/web/packages/gstat/gstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'gstat’ promotes a range of univariate and multivariate geostatistical modelling, prediction and simulation functions while ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
 
-![figure:1](https://github.com/san02/Images_GIS/blob/master/ordkrigoutput.png)
-
 ###How to use
 ####Ordinary kriging
 In order to use this tool, select the Ordkrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
