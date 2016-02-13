@@ -22,7 +22,7 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 In order to use this tool, select the Ordkrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
 
 ![Figure:1.](https://github.com/san02/Images_GIS/blob/master/ordkrigtool.png)
-<p align="center">#####Figure:1.</p>
+#####<p align="center">Figure:1.</p>
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
