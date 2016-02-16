@@ -1,6 +1,33 @@
 
 ## **Predicting the attributes of the unsampled locations by kriging utilizing the ‘gstat’ package**
 
+Before proceeding to the example, you must have the following installed on your computer:
+####Prerequisites
+#####ArcGIS 10.3.1 or ArcGIS Pro 1.1 (don't have it? try a 60 day trial)
+1. R Statistical Computing Software, 3.1.0 or later
+ - 32-bit version required for ArcMap, 64-bit version required for ArcGIS Pro (Note: the installer installs both by default).
+ - 64-bit version can be used with ArcMap by installing Background Geoprocessing and configuring scripts to run in the background.
+2. R ArcGIS Bridge
+
+#####Setup Instructions
+
+#####ArcGIS 10.3.1
+ - In the Catalog window, navigate to the folder containing the Python Toolbox, R Integration.pyt. Note: You may have to first add a folder connection to the location that you extracted the files or downloaded via GitHub.
+ - Open the toolbox, which should look like this:
+
+![figurea](https://github.com/san02/Images_GIS/blob/master/new1.png)
+  
+
+ - Run the Install R bindings script. You can then test that the bridge is able to see your R installation by running the Print R Version and R Installation Details tools.
+
+#####ArcGIS Pro 1.1
+ - In the Project pane, either navigate to a folder connection containing the Python toolbox, or right click on Toolboxes > Add Toolbox and navigate to the location of the Python toolbox.
+ - Open the toolbox, which should look like this:
+
+ ![figureb](https://github.com/san02/Images_GIS/blob/master/new.png)
+
+ -Run the Install R bindings script. You can then test that the bridge is able to see your R installation by running the Print R Version and R Installation Details tools.
+ 
 ##Term descriptions
 
 ###Methods
