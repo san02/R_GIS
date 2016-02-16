@@ -7,7 +7,7 @@ Before proceeding to the example, you must have the following installed on your 
 1. [R Statistical Computing Software, 3.1.0 or later](http://cran.cnr.berkeley.edu/bin/windows/base/)
  - 32-bit version required for ArcMap, 64-bit version required for ArcGIS Pro (Note: the installer installs both by default).
  - 64-bit version can be used with ArcMap by installing [Background Geoprocessing](http://desktop.arcgis.com/en/arcmap/10.3/analyze/executing-tools/64bit-background.htm) and configuring scripts to [run in the background](http://desktop.arcgis.com/en/arcmap/10.3/analyze/executing-tools/foreground-and-background-processing.htm).
-2. R ArcGIS Bridge
+2. [R ArcGIS Bridge](https://github.com/R-ArcGIS/r-bridge-install)
 
 #####Setup Instructions
 
