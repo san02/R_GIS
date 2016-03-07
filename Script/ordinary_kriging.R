@@ -28,12 +28,8 @@ tool_exec <- function(in_params, out_params)
   
   #exporting datasets
   d = arc.open(input_feature)
-  dat = arc.select(d, dep_variable)
-  dat['x'] = arc.shape(dat)$x
-  dat['y'] = arc.shape(dat)$y
-  dat.1 = arc.select(d,names(d@fields[d@fields == "OID"]))
-  dat.2 = cbind(dat.1,dat)
-  coordinates(dat.2)=~x+y
+  dat = arc.select(d, names(d@fields))
+  dat.2 = arc.data2sp(dat)
   
   #creating model formula
   message("Creating model formula")
@@ -45,7 +41,7 @@ tool_exec <- function(in_params, out_params)
   }
   else
   {
-  model_kr = paste(log(dat),"~1")
+  model_kr = paste(paste ("log(",dep_variable,")"),paste("~1"))
   message("formula = log(",dep_variable,")~1")
   }
   model_kr.f = as.formula(model_kr)
@@ -63,17 +59,8 @@ tool_exec <- function(in_params, out_params)
   
   message("Predicting...")
   d.loc = arc.open(predict_location)
-  oid_field_0 = d.loc@fields
-  oid_field = names(oid_field_0[oid_field_0 == 'OID'])[[1]]
-  data.loc = arc.select(d.loc,oid_field)
-  data_shp = arc.shape(data.loc)
-  
-  data.loc_xy <- data.frame(
-    x = arc.shape(data.loc)$x,
-    y = arc.shape(data.loc)$y,
-    data.loc)
-  data.loc.1  = cbind(data.loc_xy,oid_field_0)
-  coordinates(data.loc.1)=~x+y
+  data.loc = arc.select(d.loc,names(d.loc@fields))
+  data.loc.1 =  arc.data2sp(data.loc)
   gridded(data.loc.1)=T
   
   #### Write Output ####
@@ -88,7 +75,7 @@ tool_exec <- function(in_params, out_params)
   out_krig2 = out_krig[2]
   
   message("...writing output...")
-  arc.write(output_feature1,out_krig1)
+  arc.write(output_feature1,out_krig1, shape_info = d@shapeinfo)
   
   if (!is.null(output_feature2))
   {

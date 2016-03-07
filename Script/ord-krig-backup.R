@@ -1,4 +1,4 @@
-# Universial kriging of the meuse zinc data, using sqrt(dist) as covariate.
+# Ordinary kriging
 # Initializing binding tool function
 tool_exec <- function(in_params, out_params)
 {
@@ -14,66 +14,81 @@ tool_exec <- function(in_params, out_params)
   require(gstat)
   require(raster)
   
-  message("initializing")
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
+  partial_sill = in_params[[5]]
+  modl = in_params[[6]]
+  rang = in_params[[7]]
+  nugt = in_params[[8]]
   dep_variable = in_params[[3]]
-  covariate_var = in_params[[5]]
-  log_var = in_params[[4]]
-  vgm_mod = in_params[[6]]
-  
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
+  log_var = in_params[[4]]
   
   #exporting datasets
   d = arc.open(input_feature)
-  dat = arc.select(d,names(d@fields))
-  dat.2 = arc.data2sp(dat)
+  dat = arc.select(d, dep_variable)
+  dat['x'] = arc.shape(dat)$x
+  dat['y'] = arc.shape(dat)$y
+  dat.1 = arc.select(d,names(d@fields[d@fields == "OID"]))
+  dat.2 = cbind(dat.1,dat)
+  coordinates(dat.2)=~x+y
   
+  #creating model formula
   message("Creating model formula")
+  
   if (log_var == FALSE)
   {
-    model_kr = paste(dep_variable, "~sqrt(",covariate_var,")")
-    
+    model_kr = paste(dep_variable, "~1")
+    message("formula =",model_kr)
   }
   else
   {
-    model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate_var,")"))
+    model_kr = paste(log(dat),"~1")
+    message("formula = log(",dep_variable,")~1")
   }
-  
   model_kr.f = as.formula(model_kr)
   
-  message(paste0("formula =",model_kr ))
-  message("Input vgm_model = ",vgm_mod)
-  
-  message("creating variogram...")
+  #creating variogram
+  message("computing sample variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
-  vario.fit = fit.variogram(out_varianc,eval(parse(text= vgm_mod)))
   
+  message("fitting variogram model...")
+  
+  #fitting the model
+  vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
   print(vario.fit)
   
   
   message("Predicting...")
-  d.loc <- arc.open(predict_location)
-  data.loc = arc.select(d.loc, names(d.loc@fields))
-  data.loc.1 = arc.data2sp(data.loc)
+  d.loc = arc.open(predict_location)
+  oid_field_0 = d.loc@fields
+  oid_field = names(oid_field_0[oid_field_0 == 'OID'])[[1]]
+  data.loc = arc.select(d.loc,oid_field)
+  data_shp = arc.shape(data.loc)
+  
+  data.loc_xy <- data.frame(
+    x = arc.shape(data.loc)$x,
+    y = arc.shape(data.loc)$y,
+    data.loc)
+  data.loc.1  = cbind(data.loc_xy,oid_field_0)
+  coordinates(data.loc.1)=~x+y
   gridded(data.loc.1)=T
   
   #### Write Output ####
   
-  
   message("....kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
-  message(class(out_krig))
+  
   gridded(out_krig)=T
   out_krig1 = out_krig[1]
   
   gridded(out_krig)=F
   out_krig2 = out_krig[2]
   
-  message("...write output...")
-  arc.write(output_feature1,out_krig1, shape_info = d@shapeinfo)
+  message("...writing output...")
+  arc.write(output_feature1,out_krig1)
   
   if (!is.null(output_feature2))
   {
