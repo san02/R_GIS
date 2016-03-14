@@ -2,18 +2,18 @@
 # Initializing binding tool function
 tool_exec <- function(in_params, out_params)
   {
-# loading packages  
+# loading packages
    if (!requireNamespace("sp", quietly = T))
     install.packages("sp")
   if (!requireNamespace("gstat",quietly = T))
     install.packages("gstat")
   if (!requireNamespace("raster",quietly = T))
     install.packages("raster")
-  
+
   require(sp)
   require(gstat)
   require(raster)
-  
+
   # defining variables
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
@@ -25,15 +25,15 @@ tool_exec <- function(in_params, out_params)
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
   log_var = in_params[[4]]
-  
+
   #exporting datasets
   d = arc.open(input_feature)
   dat = arc.select(d, names(d@fields))
   dat.2 = arc.data2sp(dat)
-  
+
   #creating model formula
   message("Creating model formula")
-  
+
   if (log_var == FALSE)
   {
   model_kr = paste(dep_variable, "~1")
@@ -45,38 +45,38 @@ tool_exec <- function(in_params, out_params)
   message("formula = log(",dep_variable,")~1")
   }
   model_kr.f = as.formula(model_kr)
-  
+
    #creating variogram
   message("computing sample variogram...")
   out_varianc = variogram(model_kr.f,dat.2)
-  
+
   message("fitting variogram model...")
-  
+
   #fitting the model
   vario.fit = fit.variogram(out_varianc, vgm(partial_sill, modl, rang, nugt))
   print(vario.fit)
-  
-  
+
+
   message("Predicting...")
   d.loc = arc.open(predict_location)
   data.loc = arc.select(d.loc,names(d.loc@fields))
   data.loc.1 =  arc.data2sp(data.loc)
   gridded(data.loc.1)=T
-  
+
   #### Write Output ####
-  
+
   message("....kriging now....")
   out_krig = krige(model_kr.f,dat.2, data.loc.1, vario.fit)
-  
+
   gridded(out_krig)=T
   out_krig1 = out_krig[1]
-  
+
   gridded(out_krig)=F
   out_krig2 = out_krig[2]
-  
+
   message("...writing output...")
   arc.write(output_feature1,out_krig1, shape_info = d@shapeinfo)
-  
+
   if (!is.null(output_feature2))
   {
         pdf(output_feature2)
