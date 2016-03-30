@@ -26,7 +26,7 @@ Point Pattern analysis uses the [spatstat package](https://cran.r-project.org/we
 
 > `spatstat`: Spatial Point Pattern Analysis, Model-Fitting, Simulation, Tests
 > URL: 	[http://www.spatstat.org](	http://www.spatstat.org)
-> Maintained by Adrian Baddeley <Adrian.Baddeley at curtin.edu.au>
+> Maintained by Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>
 >	Licenced under GPL-2 | GPL-3 [expanded from: GPL (≥ 2)]
 
 >
