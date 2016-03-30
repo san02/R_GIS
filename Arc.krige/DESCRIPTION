@@ -1,16 +1,14 @@
 Package: Arc.krige
 Type: Package
-Title: BUilding kriging tools that work upon bridged to the ArcGIS
+Title: Building kriging tools that work upon bridged to the ArcGIS
 Version: 0.1
 Date: 2016-03-07
-Author: Shankarlingam Sundaresan
+Author: Edzer Pebesma, Shankarlingam Sundaresan
 Maintainer: Shankarlingam Sundaresan <shangeo93@gmail.com>
 Description: Using R as a scripting tool to generate geostatistical kriging
     tools for ArcGIS to work with.
 License: GPL-3
 LazyData: TRUE
-Suggests:
- gstat,sp,raster
-Depends:
- arcgisbinding
+Imports:
+ gstat,sp,raster,arcgisbinding
 RoxygenNote: 5.0.1

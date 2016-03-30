@@ -1,0 +1,6 @@
+datasets="C:/Program Files/R/R-3.2.4/library/datasets"
+grDevices="C:/Program Files/R/R-3.2.4/library/grDevices"
+graphics="C:/Program Files/R/R-3.2.4/library/graphics"
+methods="C:/Program Files/R/R-3.2.4/library/methods"
+stats="C:/Program Files/R/R-3.2.4/library/stats"
+utils="C:/Program Files/R/R-3.2.4/library/utils"

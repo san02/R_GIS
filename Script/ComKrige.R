@@ -1,4 +1,6 @@
+# Ordinary kriging of the meuse zinc data with constant ~1
 # Universial kriging of the meuse zinc data, using sqrt(dist) as covariate.
+
 # Initializing binding tool function
 tool_exec <- function(in_params, out_params)
 {
@@ -19,8 +21,8 @@ tool_exec <- function(in_params, out_params)
   input_feature = in_params[[1]]
   predict_location = in_params[[2]]
   dep_variable = in_params[[3]]
-  covariate_var = in_params[[5]]
   log_var = in_params[[4]]
+  covariate_var = in_params[[5]]
   vgm_mod = in_params[[6]]
   
   output_feature1 = out_params[[1]]
@@ -32,19 +34,35 @@ tool_exec <- function(in_params, out_params)
   dat.2 = arc.data2sp(dat)
   
   message("Creating model formula")
-  if (log_var == FALSE)
-  {
-    model_kr = paste(dep_variable, "~sqrt(",covariate_var,")")
-    
+  if (!is.null(covariate_var))
+  {  
+    if (log_var == FALSE)
+    {
+      model_kr = paste(dep_variable, "~sqrt(",covariate_var,")")
+      
+    }
+    else
+    {
+      model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate_var,")"))
+    }
+    message(paste0("formula =",model_kr ))
   }
-  else
+  else 
   {
-    model_kr = paste(paste ("log(",dep_variable,")"),paste("~sqrt(",covariate_var,")"))
+    if (log_var == FALSE)
+    {
+      model_kr = paste(dep_variable, "~1")
+      message("formula =",model_kr)
+    }
+    else
+    {
+      model_kr = paste(paste ("log(",dep_variable,")"),paste("~1"))
+      message("formula = log(",dep_variable,")~1")
+    }
   }
   
   model_kr.f = as.formula(model_kr)
   
-  message(paste0("formula =",model_kr ))
   message("Input vgm_model = ",vgm_mod)
   
   message("creating variogram...")
@@ -52,7 +70,6 @@ tool_exec <- function(in_params, out_params)
   vario.fit = fit.variogram(out_varianc,eval(parse(text= vgm_mod)))
   
   print(vario.fit)
-  
   
   message("Predicting...")
   d.loc <- arc.open(predict_location)
