@@ -20,9 +20,17 @@ Ordinary and Universal kriging use the [gstat package](http://www.gstat.org/gsta
 
 > `gstat`: Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation
 > By Edzer Pebesma [aut, cre], Benedikt Graeler [aut]
-> Licensed under the 	GPL-2 | GPL-3 [expanded from: GPL (≥ 2.0)]
+> Licensed under	GPL-2 | GPL-3 [expanded from: GPL (≥ 2.0)]
 
 Point Pattern analysis uses the [spatstat package](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf) for R:
+
+> `spatstat`: Spatial Point Pattern Analysis, Model-Fitting, Simulation, Tests
+> URL: 	[http://www.spatstat.org](	http://www.spatstat.org)
+> Maintained by Adrian Baddeley <Adrian.Baddeley at curtin.edu.au>
+>	Licenced under GPL-2 | GPL-3 [expanded from: GPL (≥ 2)]
+
+>
+>
 
 All tools depend on the R Statistical Computing Software:
 
