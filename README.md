@@ -8,10 +8,11 @@ Requirements
 
 ### Using R as a scripting tool to generate geostatistical tools for ArcGIS to work with.
 
-- This Repository has two tools as of now meant for kriging 
-     * One is for Ordinary kriging while the other is Universal kriging tool.
-- The Ordinary kriging tool simply interpolates the values.
-- The Universal kriging tool uses a covariate [sqrt(dist)] to interpolate the values.
+- This Repository has two tools as of now meant for kriging and Point pattern analysis 
+     * The kriging tool is enabled to perform Ordinary kriging and Universal kriging while the other performs the estimation of density of point pattern and simulates point pattern.
+- The Ordinary kriging simply interpolates the values.
+- The Universal kriging uses a covariate [sqrt(dist)] to interpolate the values.
+- The point pattern tool estimates the density and simulates a point pattern with the estimated density.
 
 ## Credits
 
@@ -20,6 +21,8 @@ Ordinary and Universal kriging use the [gstat package](http://www.gstat.org/gsta
 > `gstat`: Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation
 > By Edzer Pebesma [aut, cre], Benedikt Graeler [aut]
 > Licensed under the 	GPL-2 | GPL-3 [expanded from: GPL (≥ 2.0)]
+
+Point Pattern analysis uses the [spatstat package](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf) for R:
 
 All tools depend on the R Statistical Computing Software:
 
