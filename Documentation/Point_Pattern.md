@@ -54,17 +54,9 @@ In order to use this tool, select the PointPat script tool from the Interp_simul
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
-1. **Input feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
-2. **Prediction location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
-3. **Dependent variable  :** Input string that is a field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
-4. **Using log  :** Taking logarithmic values for the dependent variable.
-5. **Covariate variable  :** Input string that is a field from the input feature containing independent or explanatory variables. This field is necessary only for Universal kriging. Else it runs ordinary kriging by default. 
-6. **vgm_model  :** Input for the vgm expression to fit the variogram (default : vgm(1,"Exp",300,1) - for Universal kriging)
-7. **Output krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-8. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean and exports the output as a pdf file.
-
-The datatype "Field" has been avoided while developing the script tool (here for Dep_variable and covariate_variable) as it generates some script error in some cases. 
-
+1. **Input feature  :** Input point feature containing few or several fields on a specific theme.
+2. **Output density  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
+3. **Output simulation  :** The simulated point pattern with reference to the generated density from the given input feature dataset.
 
 #####Steps to use the tool :
 
