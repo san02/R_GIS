@@ -48,7 +48,7 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 ####Point pattern analysis
 In order to use this tool, select the PointPat script tool from the Interp_simul_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
 
-![Figure:1.](https://github.com/san02/Images_GIS/blob/master/ComKrigTool.png)
+![Figure:1.](https://github.com/san02/Images_GIS/blob/master/PointPatTool.png)
 #####<p align="center">Figure:1.</p>
 
 
@@ -81,11 +81,11 @@ The datatype "Field" has been avoided while developing the script tool (here for
 Once the inputs are given and if the covariate column is left empty, the tool runs ordinary kriging as shown below in Figure:2 and produces the output krige as a shapefile as shown in Figure:3 and variance-variogram plotted and exported as a pdf file. 
 
 
-![Figure:2](https://github.com/san02/Images_GIS/blob/master/ordkrigtoolrun.png)
+![Figure:2](https://github.com/san02/Images_GIS/blob/master/PointPatToolrun.png)
 #####<p align="center">Figure:2.</p>
 
 
-![figure:3](https://github.com/san02/Images_GIS/blob/master/ordkrigoutput.png)
+![figure:3](https://github.com/san02/Images_GIS/blob/master/PointPatoutput.png)
 #####<p align="center">Figure:3.</p>
 
 
