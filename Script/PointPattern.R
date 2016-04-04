@@ -40,6 +40,8 @@ tool_exec <- function(in_params, out_params)
   fitDensity = ppm(unmark(dat.ppp),~d1)
   simDensity = simulate(fitDensity)
   print(simDensity)
+  
+  ##converting to dataframe
   simDensDataF = as.data.frame(simDensity)
   spdfSim = SpatialPointsDataFrame(simDensDataF,simDensDataF) 
   #### Write Output ####
