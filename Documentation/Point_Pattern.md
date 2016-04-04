@@ -55,22 +55,16 @@ In order to use this tool, select the PointPat script tool from the Interp_simul
 The description of each of the parameters found in this pop-up tool is as follow.
 
 1. **Input feature  :** Input point feature containing few or several fields on a specific theme.
-2. **Output density  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
+2. **Output density  :** The estimated density of the point pattern obtained from the given input feature dataset.
 3. **Output simulation  :** The simulated point pattern with reference to the generated density from the given input feature dataset.
 
 #####Steps to use the tool :
 
 * The feature layers of meuse dataset is provided in this same repository within the data folder. 
 * Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. 
-* Click the Prediction location file icon and browse for meuse_grid from the same meuse.gdb. 
-* Click the column for dep_variable parameter and type the name of any heavy metal variable from the data (eg. 'zinc') as a string to process prediction. 
-* In case, if needed to run universal kriging, then click the column for the covariate parameter, which is optional and type ‘dist’ variable as a string to process prediction. Else, leave the column empty (to run ordinary kriging).
-* If needed, mark the Using_log icon to use the logarithmic values of the Variable.  
-* Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model. There is a default expression given as 'vgm(1,"Exp",300,1)', meant for universal kriging.
-* Give output files for Output krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
+* Give output files for Output density and Output simulation if you want to change the default file selects. Finally click OK.
 
-####Ordinary kriging
-Once the inputs are given and if the covariate column is left empty, the tool runs ordinary kriging as shown below in Figure:2 and produces the output krige as a shapefile as shown in Figure:3 and variance-variogram plotted and exported as a pdf file. 
+Once the input is given, the tool runs point pattern estimation of density and simulation as shown below in Figure:2 and produces the output density and simulation of points as a shapefile as shown in Figure:3. 
 
 
 ![Figure:2](https://github.com/san02/Images_GIS/blob/master/PointPatToolrun.png)
@@ -80,22 +74,6 @@ Once the inputs are given and if the covariate column is left empty, the tool ru
 ![figure:3](https://github.com/san02/Images_GIS/blob/master/PointPatoutput.png)
 #####<p align="center">Figure:3.</p>
 
-
-####Universal kriging
-
-Once the inputs are given and if the input variable is given as a string to the covariate column (here, it is 'dist'), the tool runs the universal kriging (with the covariate "sqrt(dist)") as shown below in Figure:5. and produces the output krige as a shapefile as shown in Figure:6. and variance-variogram plotted and exported as a pdf file.
-
-
-![Figure:5.](https://github.com/san02/Images_GIS/blob/master/univkrigtoolrun.png)
-#####<p align="center"> Figure:5.</p>
-
-
-![Figure:6.](https://github.com/san02/Images_GIS/blob/master/univkrigoutput.png)
-#####<p align="center">Figure:6.</p>
-
-
-
 ###References 
-  [1] Pebesma, Edzer J. "Multivariable geostatistics in S: the gstat package."Computers & Geosciences 30.7 (2004): 683-691. 
-  [2] Pebesma, Edzer, and Benedikt Gräler. "Spatio-temporal geostatistics using gstat." (2015).
- 
+  [1] [Kernel smoothed internsity function - Density estimation using spatstat](http://www.inside-r.org/packages/cran/spatstat/docs/density.ppp) 
+  [2] [Fitting the Point pattern model using spatstat](http://www.inside-r.org/packages/cran/spatstat/docs/ppm)
