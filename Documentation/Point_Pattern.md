@@ -46,7 +46,7 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 
 ###How to use
 ####Point pattern analysis
-In order to use this tool, select the PointPat script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
+In order to use this tool, select the PointPat script tool from the Interp_simul_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
 
 ![Figure:1.](https://github.com/san02/Images_GIS/blob/master/ComKrigTool.png)
 #####<p align="center">Figure:1.</p>
