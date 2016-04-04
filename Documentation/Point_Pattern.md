@@ -74,7 +74,11 @@ Once the input is given, the tool runs point pattern estimation of density and s
 ![figure:3](https://github.com/san02/Images_GIS/blob/master/PointPatoutput.png)
 #####<p align="center">Figure:3.</p>
 
+
+
 ###References 
   [1] Baddeley, Adrian, et al. "Package ‘spatstat’." (2015).
+  
   [2] [Kernel smoothed internsity](http://www.inside-r.org/packages/cran/spatstat/docs/density.ppp)  function - Density estimation using spatstat.
+  
   [3] [Fitting the Point pattern model](http://www.inside-r.org/packages/cran/spatstat/docs/ppm)  using spatstat.
