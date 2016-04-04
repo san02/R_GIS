@@ -42,7 +42,7 @@ The data used here in this example case is Meuse river data.
 Meuse dataset comprises the measures of four major heavy metals found in the top soil in a flood plain along the river Meuse, Belgium. This is crucial that the contamination happens just because of the river flow that moves the polluted sediments and deposits close to the river bank. This case makes it explicit for geostatistical analysis of the dataset.
 
 ###R-Package
-[Package ‘spatstat’](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'spatstat’ promotes a range of univariate and multivariate geostatistical modelling, prediction and simulation functions while ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
+[Package ‘spatstat’](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'spatstat’ promotes a range of statistical analyses of spatial data and mainly focuses on the analysis of spatial patterns of points in two-dimensional space. The points my carry auxiliart data and the spatial region in which the points were recorded may have arbitrary shape. It is designed to support a complete statistical analysis of spatial data. The ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
 
 ###How to use
 ####Kriging
