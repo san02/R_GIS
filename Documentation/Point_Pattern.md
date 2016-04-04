@@ -45,8 +45,8 @@ Meuse dataset comprises the measures of four major heavy metals found in the top
 [Package ‘spatstat’](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf) is used here in conjunction with the [package ‘sp’](https://cran.r-project.org/web/packages/sp/sp.pdf). 'spatstat’ promotes a range of statistical analyses of spatial data and mainly focuses on the analysis of spatial patterns of points in two-dimensional space. The points my carry auxiliart data and the spatial region in which the points were recorded may have arbitrary shape. It is designed to support a complete statistical analysis of spatial data. The ‘sp’ helps with class descriptions and methods for importing , exporting and visualizing spatial data.
 
 ###How to use
-####Kriging
-In order to use this tool, select the ComKriging script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
+####Point pattern analysis
+In order to use this tool, select the PointPat script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:1.
 
 ![Figure:1.](https://github.com/san02/Images_GIS/blob/master/ComKrigTool.png)
 #####<p align="center">Figure:1.</p>
