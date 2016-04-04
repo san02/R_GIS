@@ -71,10 +71,11 @@ The description of each of the parameters found in this pop-up tool is as follow
 * Click the column for dep_variable parameter and type the name of any heavy metal variable from the data (eg. 'zinc') as a string to process prediction. 
 * In case, if needed to run universal kriging, then click the column for the covariate parameter, which is optional and type ‘dist’ variable as a string to process prediction. Else, leave the column empty (to run ordinary kriging).
 * If needed, mark the Using_log icon to use the logarithmic values of the Variable.  
-* Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model. There is a default expression given as "vgm(1,"Exp",300,1)", meant for universal kriging.
+* Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model. There is a default expression given as 'vgm(1,"Exp",300,1)', meant for universal kriging.
 * Give output files for Output_krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
 
-Once the inputs are given, the tool runs as shown below in Figure:2 and produces the output krige as a shapefile and variance-variogram plotted and exported as a pdf file as shown in Figure:3.
+####Ordinary kriging
+Once the inputs are given and if the covariate column is left empty, the tool runs ordinary kriging as shown below in Figure:2 and produces the output krige as a shapefile as shown in Figure:3 and variance-variogram plotted and exported as a pdf file. 
 
 
 ![Figure:2](https://github.com/san02/Images_GIS/blob/master/ordkrigtoolrun.png)
@@ -85,38 +86,9 @@ Once the inputs are given, the tool runs as shown below in Figure:2 and produces
 #####<p align="center">Figure:3.</p>
 
 
-
 ####Universal kriging
-In order to use this tool, select the UnivKrig script tool from the krig_tools.tbx toolbox in the ArcGIS environment. As you proceed, you will find this tool popped up as shown below in Figure:4.
 
-
-![Figure:4.](https://github.com/san02/Images_GIS/blob/master/univkrigtool.png)
-#####<p align="center">Figure:4.</p>
-
-
-The description of each of the parameters found in this pop-up tool is as follow.
-
-1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
-2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
-3. **Dep_variable  :** Input string that is a field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
-4. **Using_log  :** Taking logarithmic values for the dependent variable.
-5. **Covariate_variable  :** INput string that is a field from the input feature containing independent or explanatory variables.
-6. **vgm_model  :** Input for the vgm expression to fit the variogram (default : vgm(1,"Exp",300,1) - for Universal kriging)
-7. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
-8. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean and exports the output as a pdf file.
-
-
-#####Steps to use the tool :
-
-* This works in the same way as the ordinary krige tool with the same datasets provided in this repository. Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. 
-* Click the Prediction_location file icon and browse for meuse_grid from the same meuse.gdb. 
-* Click the drop down icon of dep_variable parameter and select any heavy metal variable to process prediction. 
-* Click the drop down icon of covariate parameter and select for the ‘dist’ variable to process prediction. 
-* If needed, mark the Using_log icon to use the logarithmic values of the Variable.  
-* Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model.
-* Give output files for Output_krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
-
-Once the inputs are given, the tool runs as shown below in Figure:5. and produces the output krige as a shapefile as shown in Figure:6. and variance-variogram plotted and exported as a pdf file.
+Once the inputs are given and if the input variable is given as a string to the covariate column (here, it is 'dist'), the tool runs the universal kriging (with the covariate "sqrt(dist)") as shown below in Figure:5. and produces the output krige as a shapefile as shown in Figure:6. and variance-variogram plotted and exported as a pdf file.
 
 
 ![Figure:5.](https://github.com/san02/Images_GIS/blob/master/univkrigtoolrun.png)
