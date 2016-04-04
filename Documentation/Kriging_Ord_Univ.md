@@ -54,25 +54,28 @@ In order to use this tool, select the ComKriging script tool from the krig_tools
 
 The description of each of the parameters found in this pop-up tool is as follow.
 
-1. **Input_feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
-2. **Prediction_location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
-3. **Dep_variable  :** Input string that is a field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
-4. **Using_log  :** Taking logarithmic values for the dependent variable.
-5. **Covariate_variable  :** Input string that is a field from the input feature containing independent or explanatory variables. This field is necessary only for Universal kriging. Else it runs ordinary kriging by default. 
+1. **Input feature  :** Input point feature containing fields of the dependant variable and all explanatory variables.
+2. **Prediction location  :** Input point feature representing locations where you would like to predict the probable values for the presence of  dependant variable. These point feature must have certain explanatory variables stored as fields.
+3. **Dependent variable  :** Input string that is a field from the input feature containing the sampled attributes. A particular value gives the strength of the field element at that point.
+4. **Using log  :** Taking logarithmic values for the dependent variable.
+5. **Covariate variable  :** Input string that is a field from the input feature containing independent or explanatory variables. This field is necessary only for Universal kriging. Else it runs ordinary kriging by default. 
 6. **vgm_model  :** Input for the vgm expression to fit the variogram (default : vgm(1,"Exp",300,1) - for Universal kriging)
-7. **Output_krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
+7. **Output krige  :**  Output krige shapefile that contains the predictions of the values of unsampled locations from the Prediction_location dataset.
 8. **Output_var  :**  Output variance provides how far the values are deviated from the other and the mean and exports the output as a pdf file.
+
+The datatype "Field" has been avoided while developing the script tool (here for Dep_variable and covariate_variable) as it generates some script error in some cases. 
+
 
 #####Steps to use the tool :
 
 * The feature layers of meuse dataset is provided in this same repository within the data folder. 
 * Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. 
-* Click the Prediction_location file icon and browse for meuse_grid from the same meuse.gdb. 
+* Click the Prediction location file icon and browse for meuse_grid from the same meuse.gdb. 
 * Click the column for dep_variable parameter and type the name of any heavy metal variable from the data (eg. 'zinc') as a string to process prediction. 
 * In case, if needed to run universal kriging, then click the column for the covariate parameter, which is optional and type ‘dist’ variable as a string to process prediction. Else, leave the column empty (to run ordinary kriging).
 * If needed, mark the Using_log icon to use the logarithmic values of the Variable.  
 * Give the Values for the arguments (Partial_Sill, Model, Range, Nugget) in an expression vgm() to the Variogram model. There is a default expression given as 'vgm(1,"Exp",300,1)', meant for universal kriging.
-* Give output files for Output_krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
+* Give output files for Output krige and Output_var (Optional) if you want to change the default file selects. Finally click OK.
 
 ####Ordinary kriging
 Once the inputs are given and if the covariate column is left empty, the tool runs ordinary kriging as shown below in Figure:2 and produces the output krige as a shapefile as shown in Figure:3 and variance-variogram plotted and exported as a pdf file. 
