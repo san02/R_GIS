@@ -6,6 +6,7 @@
 #' @param in_params - input parameter containing the point feature.
 #' @param out_params - output parameter containing the outputs for the estimated density and the simulated point pattern as the shapefiles.
 #'
+#' @note The in_params parameter includes the \emph{input point feature, input boundary, and the band width for the density}
 #' @note The out_params parameter includes the return values of \emph{output_feature1}, which is the density and \emph{output_feature2}, which is the simulated point pattern.
 #' @import sp
 #' @importFrom raster raster
@@ -49,6 +50,8 @@ tool_exec <- function(in_params, out_params)
 
   ##Declaring the inputs and Output
   input_feature = in_params[[1]]
+  input_boundary = in_params[[2]]
+  BWidth = in_params[[3]]
   output_feature1 = out_params[[1]]
   output_feature2 = out_params[[2]]
 
@@ -57,10 +60,29 @@ tool_exec <- function(in_params, out_params)
   dat = arc.select(d, names(d@fields))
   dat.2 = arc.data2sp(dat)
 
+  #reading boudary input
+  b = arc.open(input_boundary)
+  b1 = arc.select(b,names(b@fields))
+  b2 = arc.data2sp(b1)
+
+  ##converting boundary into owin object
+  b.win = as.owin(b2)
+
   ### Converting the class
-  dat.ppp = as.ppp(dat.2)
+  if(!is.null(input_boundary))
+  {
+    pts = coordinates(dat.2)
+    dat.ppp = ppp(pts[,1],pts[,2],window = b.win)
+  }
+  else
+  {
+    dat.ppp = as.ppp(dat.2)
+  }
+
   print(dat.ppp)
-  d1= density.ppp(dat.ppp, sigma = 70)
+
+  # Estimating Density
+  d1= density.ppp(dat.ppp, sigma = BWidth)
   print(d1)
   r = raster(d1)
 

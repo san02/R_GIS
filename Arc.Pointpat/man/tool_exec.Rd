@@ -24,6 +24,8 @@ and simulates a point pattern based on the estimated density upon being run with
 This script function estimated the density of the point pattern using the kernel density estimation methodology using the kernel smoothed intensity function and simulates another point pattern by fitting a point pattern model.
 }
 \note{
+The in_params parameter includes the \emph{input point feature, input boundary, and the band width for the density}
+
 The out_params parameter includes the return values of \emph{output_feature1}, which is the density and \emph{output_feature2}, which is the simulated point pattern.
 }
 \author{
