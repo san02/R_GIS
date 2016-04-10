@@ -55,13 +55,17 @@ In order to use this tool, select the PointPat script tool from the Interp_simul
 The description of each of the parameters found in this pop-up tool is as follow.
 
 1. **Input feature  :** Input point feature containing few or several fields on a specific theme.
-2. **Output density  :** The estimated density of the point pattern obtained from the given input feature dataset.
-3. **Output simulation  :** The simulated point pattern with reference to the generated density from the given input feature dataset.
+2. **Input boundary :** Input boundary spatial polygon that acts as an observation window for the estimated density. This is optional.
+3. **Band width for the density :** The value for the sigma - the band width to estimate the density of the pattern pattern. (default value is given as 70)
+4. **Output density  :** The estimated density of the point pattern obtained from the given input feature dataset.
+5. **Output simulation  :** The simulated point pattern with reference to the generated density from the given input feature dataset.
 
 #####Steps to use the tool :
 
 * The feature layers of meuse dataset is provided in this same repository within the data folder. 
-* Click the input_feature file icon and browse for the meuse feature class from meuse.gdb. 
+* Click the Input feature file icon and browse for the meuse feature class from meuse.gdb.
+* Click the Input boundary file icon and browse for the meuse_area feature class from meuse.gdb.
+* There is a default value (70) for the third parameter i.e. Band width for the density. If needed to change the value, enter the new value for the sigma band width.
 * Give output files for Output density and Output simulation if you want to change the default file selects. Finally click OK.
 
 Once the input is given, the tool runs point pattern estimation of density and simulation as shown below in Figure:2 and produces the output density and simulation of points as a shapefile as shown in Figure:3. 
