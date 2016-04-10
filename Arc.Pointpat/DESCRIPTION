@@ -1,0 +1,13 @@
+Package: Arc.Pointpat
+Type: Package
+Title: Density estimation and simulation of point pattern
+Version: 0.1
+Date: 2016-04-04
+Author: Edzer Pebesma, Shankarlingam Sundaresan
+Maintainer: Shankarlingam SUndaresan <shangeo93@gmail.com>
+Description: This script function converts the input point feature into a point pattern dataset and estimates the density of the converted point pattern and simulates a point pattern based on the estimated density upon being run with the corresponding ArcGIS script tool.
+License: GPL-3
+LazyData: TRUE
+Imports:
+    spatstat,sp,raster,maptools,arcgisbinding
+RoxygenNote: 5.0.1

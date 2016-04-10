@@ -1,0 +1,17 @@
+{
+    "contents" : "#Point pattern densities - estimation of densities using spatstat\n\ntool_exec <- function(in_params, out_params)\n{\n  if (!requireNamespace(\"sp\", quietly = T))\n    install.packages(\"sp\")\n  if (!requireNamespace(\"spatstat\",quietly = T))\n    install.packages(\"spatstat\")\n  if (!requireNamespace(\"maptools\",quietly = T))\n    install.packages(\"maptools\")\n  if (!requireNamespace(\"raster\",quietly = T))\n    install.packages(\"raster\")\n\n  require(sp)\n  require(spatstat)\n  require(maptools)\n  require(raster)\n\n  ##Declaring the inputs and Output\n  input_feature = in_params[[1]]\n  input_boundary = in_params[[2]]\n  BWidth = in_params[[3]]\n  output_feature1 = out_params[[1]]\n  output_feature2 = out_params[[2]]\n\n  ## Reading the input in Arcgis\n  d = arc.open(input_feature)\n  dat = arc.select(d, names(d@fields))\n  dat.2 = arc.data2sp(dat)\n\n  #reading boudary input\n  b = arc.open(input_boundary)\n  b1 = arc.select(b,names(b@fields))\n  b2 = arc.data2sp(b1)\n\n  ##converting boundary into owin object\n  b.win = as.owin(b2)\n\n  ### Converting the class\n  if(!is.null(input_boundary))\n  {\n    pts = coordinates(dat.2)\n    dat.ppp = ppp(pts[,1],pts[,2],window = b.win)\n   }\n  else\n  {\n    dat.ppp = as.ppp(dat.2)\n  }\n\n  print(dat.ppp)\n\n  # Estimating Density\n  d1= density.ppp(dat.ppp, sigma = BWidth)\n  print(d1)\n  r = raster(d1)\n\n  ## Converting to SP class\n  patternDensity = as(r, \"SpatialPolygonsDataFrame\")\n\n  ##Simulating point pattern with the density as reference\n  fitDensity = ppm(unmark(dat.ppp),~d1)\n  simDensity = simulate(fitDensity)\n  print(simDensity)\n\n  ##converting to dataframe\n  simDensDataF = as.data.frame(simDensity)\n  spdfSim = SpatialPointsDataFrame(simDensDataF,simDensDataF)\n  #### Write Output ####\n\n  message(\"...write output...\")\n  arc.write(output_feature1,patternDensity)\n  arc.write(output_feature2,spdfSim, shape_info = d@shapeinfo)\n  message(\"...done...almost...\")\n  return(out_params)\n}\n",
+    "created" : 1459950308329.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4159926762",
+    "id" : "F65C4C67",
+    "lastKnownWriteTime" : 1460042306,
+    "path" : "C:/Users/Shankar/Desktop/SEM-2/Githb/R_GIS/Script/PointPattern.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
